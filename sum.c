@@ -32,7 +32,7 @@ int main(int argc, const char *argv[]) {
     }
     sum = LLVMAddFunction(mod, "sum", return_type);
   }
-	LLVMBuilderRef builder;
+  LLVMBuilderRef builder;
   {
     builder = LLVMCreateBuilder();
     {
@@ -82,9 +82,9 @@ int main(int argc, const char *argv[]) {
   LLVMGenericValueRef result = LLVMRunFunction(engine, sum, 2, args);
   printf("%d\n", (int)LLVMGenericValueToInt(result, 0));
 
-	if (LLVMWriteBitcodeToFile(mod, "sum.bc") != 0)
-		fprintf(stderr, "error writing bitcode to file, skipping\n");
+  if (LLVMWriteBitcodeToFile(mod, "sum.bc") != 0)
+    fprintf(stderr, "error writing bitcode to file, skipping\n");
 
-	LLVMDisposeBuilder(builder);
-	LLVMDisposeExecutionEngine(engine);
+  LLVMDisposeBuilder(builder);
+  LLVMDisposeExecutionEngine(engine);
 }
